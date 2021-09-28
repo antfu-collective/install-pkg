@@ -1,7 +1,7 @@
 {
-  "name": "install-pkg",
+  "name": "@antfu/install-pkg",
   "version": "0.0.0",
-  "description": "",
+  "description": "Install package programmatically.",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
