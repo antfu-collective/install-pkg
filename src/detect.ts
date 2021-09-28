@@ -3,7 +3,7 @@ import findUp from 'find-up'
 
 export type Agent = 'pnpm' | 'yarn' | 'npm'
 
-export const LOCKS: Record<string, Agent> = {
+const LOCKS: Record<string, Agent> = {
   'pnpm-lock.yaml': 'pnpm',
   'yarn.lock': 'yarn',
   'package-lock.json': 'npm',
