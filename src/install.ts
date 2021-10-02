@@ -6,12 +6,19 @@ export interface InstallPackageOptions {
   dev?: boolean
   silent?: boolean
   packageManager?: string
+  preferOffline?: boolean
+  additionalArgs?: string[]
 }
 
 export async function installPackage(names: string | string[], options: InstallPackageOptions = {}) {
   const agent = options.packageManager || await detectPackageManager(options.cwd) || 'npm'
   if (!Array.isArray(names))
     names = [names]
+
+  const args = options.additionalArgs || []
+
+  if (options.preferOffline)
+    args.unshift('--prefer-offline')
 
   return execa(
     agent,
@@ -20,6 +27,7 @@ export async function installPackage(names: string | string[], options: InstallP
         ? 'add'
         : 'install',
       options.dev ? '-D' : '',
+      ...args,
       ...names,
     ].filter(Boolean),
     {
