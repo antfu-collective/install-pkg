@@ -6,19 +6,32 @@ export interface InstallPackageOptions {
   dev?: boolean
   silent?: boolean
   packageManager?: string
+  packageManagerVersion?: string
   preferOffline?: boolean
   additionalArgs?: string[]
 }
 
 export async function installPackage(names: string | string[], options: InstallPackageOptions = {}) {
-  const agent = options.packageManager || await detectPackageManager(options.cwd) || 'npm'
+  const [agentDetected, versionDetected] = await detectPackageManager(options.cwd)
+  const agent = options.packageManager || agentDetected || 'npm'
+  // use version from options only if packageManager is also set by options
+  const version = options.packageManager && options.packageManagerVersion
+    ? options.packageManagerVersion
+    // use detected version only if detected packageManager is also used
+    : agentDetected === agent ? versionDetected : null
+
   if (!Array.isArray(names))
     names = [names]
 
   const args = options.additionalArgs || []
 
-  if (options.preferOffline)
-    args.unshift('--prefer-offline')
+  if (options.preferOffline) {
+    // yarn v2+ uses --cached option instead of --prefer-offline
+    if (agent === 'yarn' && version && !version.startsWith('1.'))
+      args.unshift('--cached')
+    else
+      args.unshift('--prefer-offline')
+  }
 
   return execa(
     agent,
