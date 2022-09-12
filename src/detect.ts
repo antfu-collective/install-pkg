@@ -9,23 +9,18 @@ const LOCKS: Record<string, PackageManager> = {
   'package-lock.json': 'npm',
 }
 
-/**
- * Detect the package manager and version based on the process.env var
- * "npm_config_user_agent".
- * Falls back to detection by lockfile without version if process.env
- * var is somehow missing.
- */
 export async function detectPackageManager(cwd = process.cwd()) {
-  let agent: string | null = null
-  let version: string | null = null
+  const result = await findUp(Object.keys(LOCKS), { cwd })
+  const agent = (result ? LOCKS[path.basename(result)] : null)
+  return agent
+}
 
-  if (process.env?.npm_config_user_agent)
-    [agent, version] = process.env.npm_config_user_agent.match(/[^\/\s]+/g) ?? []
-
-  if (!agent) {
-    const result = await findUp(Object.keys(LOCKS), { cwd })
-    agent = (result ? LOCKS[path.basename(result)] : null)
-  }
-
-  return [agent, version]
+/**
+ * Detect yarn berry version (2+) based on the .yarn folder which did not
+ * exists in version 1.
+ * Also checks in parent directories for yarn workspaces.
+ */
+export async function isYarnBerry(cwd = process.cwd()) {
+  const result = await findUp('.yarn', { cwd, type: 'directory' })
+  return !!result
 }

@@ -1,5 +1,5 @@
 import execa from 'execa'
-import { detectPackageManager } from '.'
+import { detectPackageManager, isYarnBerry } from '.'
 
 export interface InstallPackageOptions {
   cwd?: string
@@ -12,13 +12,7 @@ export interface InstallPackageOptions {
 }
 
 export async function installPackage(names: string | string[], options: InstallPackageOptions = {}) {
-  const [agentDetected, versionDetected] = await detectPackageManager(options.cwd)
-  const agent = options.packageManager || agentDetected || 'npm'
-  // use version from options only if packageManager is also set by options
-  const version = options.packageManager && options.packageManagerVersion
-    ? options.packageManagerVersion
-    // use detected version only if detected packageManager is also used
-    : agentDetected === agent ? versionDetected : null
+  const agent = options.packageManager || await detectPackageManager(options.cwd) || 'npm'
 
   if (!Array.isArray(names))
     names = [names]
@@ -27,7 +21,7 @@ export async function installPackage(names: string | string[], options: InstallP
 
   if (options.preferOffline) {
     // yarn v2+ uses --cached option instead of --prefer-offline
-    if (agent === 'yarn' && version && !version.startsWith('1.'))
+    if (agent === 'yarn' && await isYarnBerry())
       args.unshift('--cached')
     else
       args.unshift('--prefer-offline')
