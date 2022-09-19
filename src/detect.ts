@@ -1,5 +1,6 @@
 import path from 'path'
 import findUp from 'find-up'
+import { readPackage } from 'read-pkg'
 
 export type PackageManager = 'pnpm' | 'yarn' | 'npm'
 
@@ -16,11 +17,21 @@ export async function detectPackageManager(cwd = process.cwd()) {
 }
 
 /**
- * Detect yarn berry version (2+) based on the .yarn folder which did not
- * exists in version 1.
+ * Detect yarn berry version (2+) based on the .yarn folder and the
+ * package.json file.
  * Also checks in parent directories for yarn workspaces.
  */
 export async function isYarnBerry(cwd = process.cwd()) {
   const result = await findUp('.yarn', { cwd, type: 'directory' })
-  return !!result
+  if (!result) return false
+
+  // In yarn v1 was also the possibility that a .yarn folder exists.
+  // Check package.json for yarn version.
+  const pkg = await readPackage({ cwd: path.dirname(result) })
+  if (pkg.packageManager) {
+    const resultMatch = pkg.packageManager.match(/yarn@(\d+)/)
+    if (resultMatch.length > 1 && resultMatch[1])
+      return parseInt(resultMatch[1]) > 1
+  }
+  return false
 }
