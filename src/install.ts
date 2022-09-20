@@ -1,5 +1,5 @@
 import execa from 'execa'
-import { detectPackageManager, isYarnBerry } from '.'
+import { detectPackageManager } from '.'
 
 export interface InstallPackageOptions {
   cwd?: string
@@ -12,7 +12,8 @@ export interface InstallPackageOptions {
 }
 
 export async function installPackage(names: string | string[], options: InstallPackageOptions = {}) {
-  const agent = options.packageManager || await detectPackageManager(options.cwd) || 'npm'
+  const detectedAgent = options.packageManager || await detectPackageManager(options.cwd) || 'npm'
+  const [agent] = detectedAgent.split('@')
 
   if (!Array.isArray(names))
     names = [names]
@@ -20,8 +21,8 @@ export async function installPackage(names: string | string[], options: InstallP
   const args = options.additionalArgs || []
 
   if (options.preferOffline) {
-    // yarn v2+ uses --cached option instead of --prefer-offline
-    if (agent === 'yarn' && await isYarnBerry())
+    // yarn berry uses --cached option instead of --prefer-offline
+    if (detectedAgent === 'yarn@berry')
       args.unshift('--cached')
     else
       args.unshift('--prefer-offline')

@@ -49,7 +49,6 @@
   },
   "dependencies": {
     "execa": "^5.1.1",
-    "find-up": "^5.0.0",
-    "read-pkg": "^7.1.0"
+    "find-up": "^5.0.0"
   }
 }
