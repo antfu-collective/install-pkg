@@ -6,19 +6,27 @@ export interface InstallPackageOptions {
   dev?: boolean
   silent?: boolean
   packageManager?: string
+  packageManagerVersion?: string
   preferOffline?: boolean
   additionalArgs?: string[]
 }
 
 export async function installPackage(names: string | string[], options: InstallPackageOptions = {}) {
-  const agent = options.packageManager || await detectPackageManager(options.cwd) || 'npm'
+  const detectedAgent = options.packageManager || await detectPackageManager(options.cwd) || 'npm'
+  const [agent] = detectedAgent.split('@')
+
   if (!Array.isArray(names))
     names = [names]
 
   const args = options.additionalArgs || []
 
-  if (options.preferOffline)
-    args.unshift('--prefer-offline')
+  if (options.preferOffline) {
+    // yarn berry uses --cached option instead of --prefer-offline
+    if (detectedAgent === 'yarn@berry')
+      args.unshift('--cached')
+    else
+      args.unshift('--prefer-offline')
+  }
 
   return execa(
     agent,
