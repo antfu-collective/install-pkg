@@ -2,9 +2,9 @@ import fs from 'fs'
 import path from 'path'
 import findUp from 'find-up'
 
-export type PackageManager = 'pnpm' | 'yarn' | 'npm' | 'bun'
+export type PackageManager = 'pnpm' | 'yarn' | 'npm' | 'bun' | 'ultra'
 
-const AGENTS = ['pnpm', 'yarn', 'npm', 'pnpm@6', 'yarn@berry', 'bun'] as const
+const AGENTS = ['pnpm', 'yarn', 'npm', 'pnpm@6', 'yarn@berry', 'bun', 'ultra'] as const
 export type Agent = typeof AGENTS[number]
 
 const LOCKS: Record<string, PackageManager> = {
@@ -13,6 +13,7 @@ const LOCKS: Record<string, PackageManager> = {
   'yarn.lock': 'yarn',
   'package-lock.json': 'npm',
   'npm-shrinkwrap.json': 'npm',
+  'ultra.lock': 'ultra'
 }
 
 export async function detectPackageManager(cwd = process.cwd()): Promise<Agent | null> {
