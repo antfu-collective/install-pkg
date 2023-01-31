@@ -9,9 +9,11 @@ npm i @antfu/install-pkg
 ```
 
 ```ts
-import { installPackage } from '@antfu/install-pkg'
+import { installPackage } from '@antfu/install-pkg';
 
-await installPackage('vite', { silent: true })
+(async () => {
+  await installPackage('vite', { silent: true });
+})();
 ```
 
 ## Sponsors
