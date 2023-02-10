@@ -2,7 +2,7 @@
 
 [![NPM version](https://img.shields.io/npm/v/@antfu/install-pkg?color=a1b858&label=)](https://www.npmjs.com/package/@antfu/install-pkg)
 
-Install package programmatically. Detect package managers automatically (`npm`, `yarn` and `pnpm`).
+Install package programmatically. Detect package managers automatically (`npm`, `yarn`, `bun` and `pnpm`).
 
 ```bash
 npm i @antfu/install-pkg
