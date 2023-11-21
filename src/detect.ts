@@ -1,6 +1,7 @@
-import fs from 'fs'
-import path from 'path'
-import {findUp} from 'find-up'
+import fs from 'node:fs'
+import path from 'node:path'
+import process from 'node:process'
+import { findUp } from 'find-up'
 
 export type PackageManager = 'pnpm' | 'yarn' | 'npm' | 'bun'
 
@@ -30,11 +31,11 @@ export async function detectPackageManager(cwd = process.cwd()): Promise<Agent |
       const pkg = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'))
       if (typeof pkg.packageManager === 'string') {
         const [name, version] = pkg.packageManager.split('@')
-        if (name === 'yarn' && parseInt(version) > 1)
+        if (name === 'yarn' && Number.parseInt(version) > 1)
           agent = 'yarn@berry'
-        else if (name === 'pnpm' && parseInt(version) < 7)
+        else if (name === 'pnpm' && Number.parseInt(version) < 7)
           agent = 'pnpm@6'
-        else if (name in AGENTS)
+        else if (AGENTS.includes(name))
           agent = name
         else
           console.warn('[ni] Unknown packageManager:', pkg.packageManager)

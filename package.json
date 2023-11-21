@@ -1,5 +1,6 @@
 {
   "name": "@antfu/install-pkg",
+  "type": "module",
   "version": "0.1.1",
   "packageManager": "pnpm@8.10.5",
   "description": "Install package programmatically.",
@@ -19,12 +20,12 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "require": "./dist/index.js",
-      "import": "./dist/index.mjs"
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
     }
   },
   "main": "dist/index.js",
-  "module": "dist/index.mjs",
+  "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
