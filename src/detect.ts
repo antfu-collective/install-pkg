@@ -1,6 +1,6 @@
 import fs from 'fs'
 import path from 'path'
-import findUp from 'find-up'
+import {findUp} from 'find-up'
 
 export type PackageManager = 'pnpm' | 'yarn' | 'npm' | 'bun'
 
