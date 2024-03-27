@@ -1,3 +1,6 @@
+import { existsSync } from 'node:fs'
+import process from 'node:process'
+import { resolve } from 'node:path'
 import { execa } from 'execa'
 import { detectPackageManager } from '.'
 
@@ -27,6 +30,9 @@ export async function installPackage(names: string | string[], options: InstallP
     else
       args.unshift('--prefer-offline')
   }
+
+  if (agent === 'pnpm' && existsSync(resolve(options.cwd ?? process.cwd(), 'pnpm-workspace.yaml')))
+    args.unshift('-w')
 
   return execa(
     agent,
