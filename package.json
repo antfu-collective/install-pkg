@@ -44,7 +44,8 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@jsdevtools/ez-spawn": "^3.0.4"
+    "@jsdevtools/ez-spawn": "^3.0.4",
+    "package-manager-detector": "^0.1.0"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.16.0",
@@ -53,7 +54,6 @@
     "bumpp": "^9.4.0",
     "eslint": "^9.1.1",
     "esno": "^4.7.0",
-    "find-up": "^7.0.0",
     "publint": "^0.2.7",
     "tsup": "^8.0.2",
     "typescript": "^5.4.5"
