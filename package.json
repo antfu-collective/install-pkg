@@ -2,7 +2,7 @@
   "name": "@antfu/install-pkg",
   "type": "module",
   "version": "0.3.3",
-  "packageManager": "pnpm@9.0.6",
+  "packageManager": "pnpm@9.7.0",
   "description": "Install package programmatically.",
   "author": "Anthony Fu <anthonyfu117@hotmail.com>",
   "license": "MIT",
@@ -43,19 +43,19 @@
     "release": "bumpp --commit --push --tag && pnpm publish",
     "lint": "eslint ."
   },
+  "dependencies": {
+    "tinyexec": "^0.1.4"
+  },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.16.0",
-    "@antfu/ni": "^0.21.12",
-    "@types/node": "^20.12.7",
-    "bumpp": "^9.4.0",
-    "eslint": "^9.1.1",
+    "@antfu/eslint-config": "^2.25.1",
+    "@antfu/ni": "^0.22.1",
+    "@types/node": "^22.2.0",
+    "bumpp": "^9.4.2",
+    "eslint": "^9.9.0",
     "esno": "^4.7.0",
     "find-up": "^7.0.0",
-    "publint": "^0.2.7",
-    "tsup": "^8.0.2",
-    "typescript": "^5.4.5"
-  },
-  "dependencies": {
-    "tinyexec": "^0.1.2"
+    "publint": "^0.2.9",
+    "tsup": "^8.2.4",
+    "typescript": "^5.5.4"
   }
 }

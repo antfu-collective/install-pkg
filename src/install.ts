@@ -2,7 +2,7 @@ import { existsSync } from 'node:fs'
 import process from 'node:process'
 import { resolve } from 'node:path'
 import { x } from 'tinyexec'
-import { detectPackageManager } from '.'
+import { detectPackageManager } from './detect'
 
 export interface InstallPackageOptions {
   cwd?: string
