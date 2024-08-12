@@ -8,6 +8,6 @@ export type PackageManager = 'pnpm' | 'yarn' | 'npm' | 'bun'
 export async function detectPackageManager(cwd = process.cwd()): Promise<Agent | null> {
   return (await detect({
     cwd,
-    onUnknown: (packageManager) => { console.warn('[@antfu/install-pkg] Unknown packageManager:', packageManager) }
+    onUnknown: (packageManager) => { console.warn('[@antfu/install-pkg] Unknown packageManager:', packageManager) },
   }))?.agent || null
 }
