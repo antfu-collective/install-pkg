@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       package-manager-detector:
-        specifier: ^0.1.0
-        version: 0.1.0
+        specifier: ^0.1.1
+        version: 0.1.1
     devDependencies:
       '@antfu/eslint-config':
         specifier: ^2.25.1
@@ -1749,8 +1749,8 @@ packages:
   package-json-from-dist@1.0.0:
     resolution: {integrity: sha512-dATvCeZN/8wQsGywez1mzHtTlP22H8OEfPrVMLNr4/eGa+ijtLn/6M5f0dY8UKNrC2O9UCU6SSoG3qRKnt7STw==}
 
-  package-manager-detector@0.1.0:
-    resolution: {integrity: sha512-qRwvZgEE7geMY6xPChI3T0qrM0PL4s/AKiLnNVjhg3GdN2/fUUSrpGA5Z8mejMXauT1BS6RJIgWvSGAdqg8NnQ==}
+  package-manager-detector@0.1.1:
+    resolution: {integrity: sha512-KRfleQVD8jK1lIOo6fJxAtBH0fYo/r9q1+2Zs931cz0GLt1WeGYgIC0J+kETRZk8Ha2HghztDQSEqbeo00bzhw==}
 
   parent-module@1.0.1:
     resolution: {integrity: sha512-GQ2EWRpQV8/o+Aw8YqtfZZPfNRWZYkbidE9k5rpl/hC3vtHHBfGm2Ifi6qWV+coDGkrUKZAxE3Lot5kcsRlh+g==}
@@ -3937,7 +3937,7 @@ snapshots:
 
   package-json-from-dist@1.0.0: {}
 
-  package-manager-detector@0.1.0: {}
+  package-manager-detector@0.1.1: {}
 
   parent-module@1.0.1:
     dependencies:

@@ -44,7 +44,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "package-manager-detector": "^0.1.0"
+    "package-manager-detector": "^0.1.1"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.25.1",

@@ -6,5 +6,8 @@ export { type Agent } from 'package-manager-detector'
 export type PackageManager = 'pnpm' | 'yarn' | 'npm' | 'bun'
 
 export async function detectPackageManager(cwd = process.cwd()): Promise<Agent | null> {
-  return (await detect({ cwd }))?.agent || null
+  return (await detect({
+    cwd,
+    onUnknown: (packageManager) => { console.warn('[ni] Unknown packageManager:', packageManager) }
+  }))?.agent || null
 }
