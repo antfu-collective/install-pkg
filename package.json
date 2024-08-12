@@ -43,9 +43,6 @@
     "release": "bumpp --commit --push --tag && pnpm publish",
     "lint": "eslint ."
   },
-  "dependencies": {
-    "@jsdevtools/ez-spawn": "^3.0.4"
-  },
   "devDependencies": {
     "@antfu/eslint-config": "^2.16.0",
     "@antfu/ni": "^0.21.12",
@@ -57,5 +54,8 @@
     "publint": "^0.2.7",
     "tsup": "^8.0.2",
     "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "tinyexec": "^0.1.2"
   }
 }
