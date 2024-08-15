@@ -1,7 +1,7 @@
 import { existsSync } from 'node:fs'
 import process from 'node:process'
 import { resolve } from 'node:path'
-import { x } from 'tinyexec'
+import { async as ezspawn } from '@jsdevtools/ez-spawn'
 import { detectPackageManager } from './detect'
 
 export interface InstallPackageOptions {
@@ -34,7 +34,7 @@ export async function installPackage(names: string | string[], options: InstallP
   if (agent === 'pnpm' && existsSync(resolve(options.cwd ?? process.cwd(), 'pnpm-workspace.yaml')))
     args.unshift('-w')
 
-  return x(
+  return ezspawn(
     agent,
     [
       agent === 'yarn'
@@ -45,10 +45,8 @@ export async function installPackage(names: string | string[], options: InstallP
       ...names,
     ].filter(Boolean),
     {
-      nodeOptions: {
-        stdio: options.silent ? 'ignore' : 'inherit',
-        cwd: options.cwd,
-      },
+      stdio: options.silent ? 'ignore' : 'inherit',
+      cwd: options.cwd,
     },
   )
 }
