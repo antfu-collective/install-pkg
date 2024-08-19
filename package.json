@@ -1,8 +1,8 @@
 {
   "name": "@antfu/install-pkg",
   "type": "module",
-  "version": "0.3.4",
-  "packageManager": "pnpm@9.7.0",
+  "version": "0.3.5",
+  "packageManager": "pnpm@9.7.1",
   "description": "Install package programmatically.",
   "author": "Anthony Fu <anthonyfu117@hotmail.com>",
   "license": "MIT",
@@ -44,17 +44,17 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "package-manager-detector": "^0.1.1",
-    "tinyexec": "^0.1.4"
+    "@jsdevtools/ez-spawn": "^3.0.4",
+    "package-manager-detector": "^0.1.1"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.25.1",
-    "@antfu/ni": "^0.22.1",
-    "@types/node": "^22.2.0",
-    "bumpp": "^9.4.2",
+    "@antfu/ni": "^0.22.4",
+    "@types/node": "^22.3.0",
+    "bumpp": "^9.5.1",
     "eslint": "^9.9.0",
     "esno": "^4.7.0",
-    "publint": "^0.2.9",
+    "publint": "^0.2.10",
     "tsup": "^8.2.4",
     "typescript": "^5.5.4"
   }
