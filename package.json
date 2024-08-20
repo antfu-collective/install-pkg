@@ -44,6 +44,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "package-manager-detector": "^0.1.1",
     "tinyexec": "^0.2.0"
   },
   "devDependencies": {
@@ -53,7 +54,6 @@
     "bumpp": "^9.5.1",
     "eslint": "^9.9.0",
     "esno": "^4.7.0",
-    "find-up": "^7.0.0",
     "publint": "^0.2.10",
     "tsup": "^8.2.4",
     "typescript": "^5.5.4"
