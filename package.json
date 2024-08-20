@@ -44,8 +44,8 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@jsdevtools/ez-spawn": "^3.0.4",
-    "package-manager-detector": "^0.1.1"
+    "package-manager-detector": "^0.1.1",
+    "tinyexec": "^0.2.0"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.25.1",
