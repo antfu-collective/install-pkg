@@ -1,7 +1,8 @@
 import process from 'node:process'
-import { type Agent, detect } from 'package-manager-detector'
+import type { Agent } from 'package-manager-detector'
+import { detect } from 'package-manager-detector/detect'
 
-export { type Agent } from 'package-manager-detector'
+export type { Agent } from 'package-manager-detector'
 
 export type PackageManager = 'pnpm' | 'yarn' | 'npm' | 'bun'
 
@@ -10,6 +11,7 @@ export async function detectPackageManager(cwd = process.cwd()): Promise<Agent |
     cwd,
     onUnknown(packageManager) {
       console.warn('[@antfu/install-pkg] Unknown packageManager:', packageManager)
+      return undefined
     },
   })
 
