@@ -45,7 +45,7 @@
   },
   "dependencies": {
     "package-manager-detector": "^0.1.1",
-    "tinyexec": "^0.2.0"
+    "tinyexec": "^0.3.0"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.26.0",

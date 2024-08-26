@@ -49,6 +49,7 @@ export async function installPackage(names: string | string[], options: InstallP
         stdio: options.silent ? 'ignore' : 'inherit',
         cwd: options.cwd,
       },
+      throwOnError: true,
     },
   )
 }
