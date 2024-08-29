@@ -9,7 +9,6 @@ export interface InstallPackageOptions {
   dev?: boolean
   silent?: boolean
   packageManager?: string
-  packageManagerVersion?: string
   preferOffline?: boolean
   additionalArgs?: string[]
 }
