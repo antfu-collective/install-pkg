@@ -10,7 +10,7 @@ export interface InstallPackageOptions {
   silent?: boolean
   packageManager?: string
   preferOffline?: boolean
-  additionalArgs?: string[]
+  additionalArgs?: string[] | ((agent: string, detectedAgent: string) => string[] | undefined)
 }
 
 export async function installPackage(names: string | string[], options: InstallPackageOptions = {}) {
@@ -20,7 +20,9 @@ export async function installPackage(names: string | string[], options: InstallP
   if (!Array.isArray(names))
     names = [names]
 
-  const args = options.additionalArgs || []
+  const args = (typeof options.additionalArgs === 'function'
+    ? options.additionalArgs(agent, detectedAgent)
+    : options.additionalArgs) || []
 
   if (options.preferOffline) {
     // yarn berry uses --cached option instead of --prefer-offline
