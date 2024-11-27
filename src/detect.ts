@@ -1,5 +1,5 @@
-import process from 'node:process'
 import type { Agent } from 'package-manager-detector'
+import process from 'node:process'
 import { detect } from 'package-manager-detector/detect'
 
 export type { Agent } from 'package-manager-detector'
