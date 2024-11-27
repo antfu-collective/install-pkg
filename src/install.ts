@@ -32,8 +32,16 @@ export async function installPackage(names: string | string[], options: InstallP
       args.unshift('--prefer-offline')
   }
 
-  if (agent === 'pnpm' && existsSync(resolve(options.cwd ?? process.cwd(), 'pnpm-workspace.yaml')))
-    args.unshift('-w')
+  if (agent === 'pnpm' && existsSync(resolve(options.cwd ?? process.cwd(), 'pnpm-workspace.yaml'))) {
+    args.unshift(
+      '-w',
+      /**
+       * Prevent pnpm from removing installed devDeps while `NODE_ENV` is `production`
+       * @see https://pnpm.io/cli/install#--prod--p
+       */
+      '--prod=false',
+    )
+  }
 
   return x(
     agent,
