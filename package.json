@@ -31,6 +31,7 @@
     "lint": "eslint .",
     "prepublishOnly": "nr build",
     "release": "bumpp",
+    "test": "vitest",
     "typecheck": "tsc"
   },
   "dependencies": {
@@ -46,6 +47,7 @@
     "publint": "^0.3.24",
     "tsdown": "^0.23.0",
     "tsx": "^4.23.13",
-    "typescript": "^6.0.3"
+    "typescript": "^6.0.3",
+    "vitest": "^5.0.0"
   }
 }
