@@ -35,10 +35,13 @@ export async function installPackage(names: string | string[], options: InstallP
   if (agent === 'pnpm') {
     args.unshift(
       /**
-       * Prevent pnpm from removing installed devDeps while `NODE_ENV` is `production`
+       * Prevent pnpm from removing installed devDeps while `NODE_ENV` is `production`.
+       * Uses the `--config.` escape hatch instead of `--prod=false` because pnpm >=12.4.1
+       * routes `install <pkg>` through its `add`-compatible parser, which rejects `--prod`.
        * @see https://pnpm.io/cli/install#--prod--p
+       * @see https://github.com/pnpm/pnpm/issues/14868
        */
-      '--prod=false',
+      '--config.prod=false',
     )
     if (existsSync(resolve(options.cwd ?? process.cwd(), 'pnpm-workspace.yaml'))) {
       args.unshift('-w')
