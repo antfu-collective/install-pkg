@@ -1,3 +1,4 @@
+import { resolve } from 'node:path'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 const { existsSyncMock, xMock } = vi.hoisted(() => ({
@@ -52,7 +53,7 @@ describe('uninstallPackage', () => {
   it('adds -w for pnpm when a pnpm workspace is present', async () => {
     existsSyncMock.mockReturnValue(true)
     await uninstallPackage('foo', { packageManager: 'pnpm', cwd: '/some/dir' })
-    expect(existsSyncMock).toHaveBeenCalledWith('/some/dir/pnpm-workspace.yaml')
+    expect(existsSyncMock).toHaveBeenCalledWith(resolve('/some/dir', 'pnpm-workspace.yaml'))
     expect(xMock).toHaveBeenCalledWith(
       'pnpm',
       ['uninstall', '-w', 'foo'],
