@@ -1,11 +1,11 @@
-allowBuilds:
-  esbuild: true
-minimumReleaseAgeExclude:
-  - bumpp@12.0.0
-shellEmulator: true
-
+minimumReleaseAgeExcludePrune: true
 trustPolicy: no-downgrade
 
-onlyBuiltDependencies:
-  - esbuild
-  - unrs-resolver
+update:
+  ignoreDeps:
+    - typescript@7
+
+shellEmulator: true
+
+allowBuilds:
+  esbuild: true
